@@ -19,9 +19,13 @@ class ViewController: UIViewController, NMSSHChannelDelegate {
         {
             print("Session connected")
             //Mac requires this kind of authentication
-            session?.authenticateByKeyboardInteractive({ (request: String?) -> String? in
-                return password
-            })
+//             session?.authenticateByKeyboardInteractive({ (request: String?) -> String? in
+//                 return password
+//             })
+            
+            if session?.isConnected == true {
+                session?.authenticate(byPassword: password)
+            }
             
             session?.channel.delegate = self;
             
