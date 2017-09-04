@@ -20,12 +20,12 @@ class ViewController: UIViewController, NMSSHChannelDelegate {
             print("Session connected")
             session?.channel.delegate = self
             session?.channel.ptyTerminalType = .vanilla
-            session?.channel.requestPty = false
+            session?.channel.requestPty = true
             session?.authenticate(byPassword:password)
             
             do{
                 try session?.channel.startShell()
-                let a = try session?.channel.write("echo $PATH\n")
+                let a = try session?.channel.write("sleep\n")
                 print(a)
                 print(session?.channel.lastResponse ?? "no respone of last command")
             }catch{
