@@ -18,26 +18,14 @@ class ViewController: UIViewController, NMSSHChannelDelegate {
         if session?.isConnected == true
         {
             print("Session connected")
-            //Mac requires this kind of authentication
-//             session?.authenticateByKeyboardInteractive({ (request: String?) -> String? in
-//                 return password
-//             })
-            
-            if session?.isConnected == true {
-                session?.authenticate(byPassword: password)
-            }
-            
-            session?.channel.delegate = self;
+            session?.authenticate(byPassword:password)
             
             do{
-                try session?.channel.execute("ls")
+                try session?.channel.execute("echo $PATH")
                 print(session?.channel.lastResponse ?? "no respone of last command")
             }catch{
                 print("Error ocurred!!")
             }
-            
-            //For other types
-            //session.authenticateByPassword(password)
         }
         //session?.disconnect()
     }
@@ -49,6 +37,7 @@ class ViewController: UIViewController, NMSSHChannelDelegate {
 
     func channel(_ channel: NMSSHChannel!, didReadRawData data: Data!) {
         let str = String(data: data, encoding: .isoLatin1)!
+        print("hello")
         print(str)
     }
 
