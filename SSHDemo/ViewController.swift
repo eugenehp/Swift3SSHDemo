@@ -9,7 +9,8 @@ class ViewController: UIViewController, NMSSHChannelDelegate {
         super.viewDidLoad()
         
         
-        let host = "10.0.1.15:22"
+//        let host = "10.0.1.15:22"
+        let host = "45.51.135.163:22"
         let username = "admin"
         let password = "123"
         let session = NMSSHSession(host: host, andUsername: username)

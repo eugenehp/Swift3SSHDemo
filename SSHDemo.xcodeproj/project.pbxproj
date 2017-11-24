@@ -13,6 +13,7 @@
 		290160571F5CEC8300D36980 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 290160561F5CEC8300D36980 /* Assets.xcassets */; };
 		2901605A1F5CEC8300D36980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 290160581F5CEC8300D36980 /* LaunchScreen.storyboard */; };
 		3C4D3C2E5105F0B8AA0BFB40 /* Pods_SSHDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FA5C6F9B4E2C73786009C8 /* Pods_SSHDemo.framework */; };
+		44AFAE541FC8B568005AA6B0 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44AFAE531FC8B568005AA6B0 /* NMSSH.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		290160561F5CEC8300D36980 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		290160591F5CEC8300D36980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2901605B1F5CEC8300D36980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44AFAE531FC8B568005AA6B0 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
 		46FA5C6F9B4E2C73786009C8 /* Pods_SSHDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSHDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95E193A86800D43BCD3A6746 /* Pods-SSHDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSHDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SSHDemo/Pods-SSHDemo.release.xcconfig"; sourceTree = "<group>"; };
 		A72FAF741D77286A51AAB980 /* Pods-SSHDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSHDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SSHDemo/Pods-SSHDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44AFAE541FC8B568005AA6B0 /* NMSSH.framework in Frameworks */,
 				3C4D3C2E5105F0B8AA0BFB40 /* Pods_SSHDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				46FA5C6F9B4E2C73786009C8 /* Pods_SSHDemo.framework */,
+				44AFAE531FC8B568005AA6B0 /* NMSSH.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -164,13 +168,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SSHDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A07CFEA81A34113C18DF5EF1 /* [CP] Embed Pods Frameworks */ = {
@@ -179,9 +186,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SSHDemo/Pods-SSHDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NMSSH/NMSSH.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NMSSH.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -335,6 +345,12 @@
 			baseConfigurationReference = A72FAF741D77286A51AAB980 /* Pods-SSHDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/NMSSH\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SSHDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.reactivelions.sshdemo.SSHDemo;
@@ -348,6 +364,12 @@
 			baseConfigurationReference = 95E193A86800D43BCD3A6746 /* Pods-SSHDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/NMSSH\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SSHDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.reactivelions.sshdemo.SSHDemo;
@@ -375,6 +397,7 @@
 				290160601F5CEC8300D36980 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
